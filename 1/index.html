@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+
+<form>
+	<textarea id="stringinput"></textarea><br>
+	<button type="button"  onclick="toggle(this)" > Convert </button>  <br>
+	<textarea id="stringoutput"></textarea><br>
+</form>
+
+
+</body>
+
+<script>
+function toggle(button){
+	let sinput = document.getElementById("stringinput").value;
+	while (sinput.includes("\n")){
+		sinput=sinput.replace("\n",", ");
+	}
+	document.getElementById("stringoutput").value=sinput;
+	
+}
+
+</script>
+
+</html>
