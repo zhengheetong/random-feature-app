@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Random Feature App - Table of Contents</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f4f7f6;
+            color: #333;
+            margin: 0;
+            padding: 40px 20px;
+            text-align: center;
+        }
+        h1 {
+            color: #2c3e50;
+            margin-bottom: 10px;
+        }
+        p {
+            color: #7f8c8d;
+            margin-bottom: 40px;
+        }
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+            gap: 25px;
+            padding: 10px;
+        }
+        .feature-card {
+            background: #ffffff;
+            border-radius: 12px;
+            padding: 30px 20px;
+            text-decoration: none;
+            color: #2c3e50;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            border: 1px solid #e1e8ed;
+        }
+        .feature-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 15px rgba(0, 0, 0, 0.1);
+            border-color: #bdc3c7;
+        }
+        .feature-icon {
+            font-size: 45px;
+            margin-bottom: 15px;
+        }
+        .feature-title {
+            font-size: 1.2em;
+            font-weight: 600;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>My Random Features</h1>
+    <p>Click on a card below to view the feature.</p>
+
+    <div class="container">
+        
+        <a href="Clock/index.html" class="feature-card">
+            <div class="feature-icon">🕒</div>
+            <div class="feature-title">Simple Clock</div>
+        </a>
+
+        <a href="#" class="feature-card">
+            <div class="feature-icon">🛠️</div>
+            <div class="feature-title">Feature 2</div>
+        </a>
+
+        <a href="#" class="feature-card">
+            <div class="feature-icon">✨</div>
+            <div class="feature-title">Feature 3</div>
+        </a>
+
+    </div>
+
+</body>
+</html>
