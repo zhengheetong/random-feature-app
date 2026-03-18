@@ -31,6 +31,7 @@ export default function TweetGenerator() {
       } else {
         setError('Could not find a valid Tweet ID. Make sure it is a full post URL.');
       }
+    // eslint-disable-next-line no-unused-vars
     } catch (err) {
       setError('Please enter a valid URL starting with http:// or https://');
     }
@@ -97,6 +98,7 @@ export default function TweetGenerator() {
       link.href = url;
       link.download = `x-post-${tweetId}.png`;
       link.click();
+    // eslint-disable-next-line no-unused-vars
     } catch (err) {
       setError('Could not download image due to X security restrictions.');
     }
