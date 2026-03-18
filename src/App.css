@@ -70,3 +70,12 @@ body {
   font-weight: bold;
   color: #e0e0e0;
 }
+
+/* This ensures the card itself is colored, but the "outside" can be transparent */
+.react-tweet-theme article {
+  background-color: #15202b !important; /* X's dark mode color */
+  border-radius: 16px !important;
+  overflow: hidden !important; /* This "clips" the background to the corners */
+  border: 1px solid #2f3336 !important;
+  margin: 0 !important;
+}

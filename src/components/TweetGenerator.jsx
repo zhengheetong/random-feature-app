@@ -37,62 +37,93 @@ export default function TweetGenerator() {
   };
 
   const handleCopyImage = async () => {
-    if (!captureRef.current) return;
+    const tweetElement = captureRef.current?.querySelector('article');
+    if (!tweetElement) return;
+
     setIsProcessing(true);
+    setError(''); // Clear previous errors
 
     try {
-      const canvas = await html2canvas(captureRef.current, {
-        useCORS: true, // Attempts to load external images if the server allows it
-        backgroundColor: '#15202b', // X Dark mode background color
-        scale: 2 // High-res
+      const canvas = await html2canvas(tweetElement, {
+        useCORS: true, 
+        // Change 'null' to a solid color to help WhatsApp process the image
+        backgroundColor: '#15202b', 
+        scale: 3, 
+        logging: false,
       });
 
-      // Convert canvas to a Blob and write directly to the clipboard
       canvas.toBlob(async (blob) => {
-        if (blob) {
-          try {
-            await navigator.clipboard.write([
-              new ClipboardItem({ 'image/png': blob })
-            ]);
-            setCopied(true);
-            setTimeout(() => setCopied(false), 3000);
-          } catch (clipErr) {
-            console.error('Clipboard write failed:', clipErr);
-            alert('Your browser might block direct clipboard image copying. Try downloading instead.');
-          }
+        if (!blob) {
+          setError('Failed to create image blob.');
+          setIsProcessing(false);
+          return;
+        }
+
+        try {
+          await navigator.clipboard.write([
+            new ClipboardItem({ 'image/png': blob })
+          ]);
+          setCopied(true);
+          setTimeout(() => setCopied(false), 3000);
+        } catch (clipErr) {
+          console.error('Clipboard error:', clipErr);
+          // If clipboard fails, we tell the user why
+          setError('WhatsApp Web often blocks clipboard images. Use "Download" instead!');
         }
         setIsProcessing(false);
       }, 'image/png');
       
     } catch (err) {
-      console.error('Canvas capture failed:', err);
-      setError('Failed to generate image.');
+      console.error('Capture failed:', err);
+      setError('Security block: X does not allow saving these images directly.');
       setIsProcessing(false);
     }
+  };
+
+  // Add a separate Download function for a 100% success rate
+  const handleDownloadImage = async () => {
+    const tweetElement = captureRef.current?.querySelector('article');
+    if (!tweetElement) return;
+
+    setIsProcessing(true);
+    try {
+      const canvas = await html2canvas(tweetElement, {
+        useCORS: true,
+        backgroundColor: '#15202b',
+        scale: 3,
+      });
+      const url = canvas.toDataURL('image/png');
+      const link = document.createElement('a');
+      link.href = url;
+      link.download = `x-post-${tweetId}.png`;
+      link.click();
+    } catch (err) {
+      setError('Could not download image due to X security restrictions.');
+    }
+    setIsProcessing(false);
   };
 
   return (
     <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', padding: '20px' }}>
       
       {/* --- PREVIEW AREA --- */}
-      <div 
-        style={{
-          padding: '20px', backgroundColor: '#1e1e1e', borderRadius: '12px',
-          marginBottom: '30px', boxShadow: '0 4px 10px rgba(0,0,0,0.5)',
-          minWidth: '350px', minHeight: '200px', display: 'flex',
-          justifyContent: 'center', alignItems: 'center'
-        }}
-      >
+      <div style={{
+        padding: '40px', 
+        backgroundColor: '#1e1e1e', 
+        borderRadius: '12px',
+        marginBottom: '30px',
+        display: 'flex',
+        justifyContent: 'center'
+      }}>
         {tweetId ? (
-          // The wrapper ref target for html2canvas
-          <div ref={captureRef} style={{ padding: '10px', backgroundColor: 'transparent', borderRadius: '12px', textAlign: 'left' }}>
+          <div ref={captureRef} style={{ textAlign: 'left' }}>
             <div className="dark">
               <Tweet id={tweetId} />
             </div>
           </div>
         ) : (
-          <div style={{ color: '#95a5a6', textAlign: 'center', fontFamily: 'sans-serif', fontStyle: 'italic' }}>
-            Paste an X link below<br/>to fetch the post
+          <div style={{ color: '#95a5a6', fontStyle: 'italic' }}>
+            Paste an X link below
           </div>
         )}
       </div>
@@ -142,6 +173,19 @@ export default function TweetGenerator() {
             }}
           >
             {isProcessing ? 'Processing...' : (copied ? '✅ Copied to Clipboard!' : '📋 Copy Image')}
+          </button>
+
+          <button 
+            onClick={handleDownloadImage}
+            disabled={!tweetId || isProcessing}
+            style={{ 
+              flex: 1, padding: '15px', 
+              backgroundColor: '#e67e22', 
+              color: 'white', border: 'none', 
+              borderRadius: '6px', 
+              cursor: tweetId ? 'pointer' : 'not-allowed' }}
+          >
+            📥 Download
           </button>
         </div>
 
