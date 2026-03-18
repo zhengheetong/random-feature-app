@@ -5,6 +5,7 @@ import QRCodeGenerator from './components/QRCodeGenerator';
 import Counter from './components/Counter';
 import Wheel from './components/Wheel';
 import Objectives from './components/Objectives';
+import TweetGenerator from './components/TweetGenerator';
 
 // We extract the dashboard into its own mini-component for cleaner code
 function Dashboard() {
@@ -38,6 +39,10 @@ function Dashboard() {
           <div className="feature-icon">📝</div>
           <div className="feature-title">Live Objectives</div>
         </Link>
+        <Link to="/tweet" className="feature-card" style={{ textDecoration: 'none' }}>
+          <div className="feature-icon">🐦</div>
+          <div className="feature-title">Social Card</div>
+        </Link>
       </div>
     </div>
   );
@@ -57,6 +62,7 @@ function App() {
           <Route path="/counter" element={<Counter />} />
           <Route path="/wheel" element={<Wheel />} />
           <Route path="/objectives" element={<Objectives />} />
+          <Route path="/tweet" element={<TweetGenerator />} />
         </Routes>
       </div>
     </Router>
