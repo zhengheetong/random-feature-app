@@ -1,2 +1,20 @@
 # Auto detect text files and perform LF normalization
 * text=auto
+# Set the default behavior to have all text files normalized.
+* text=auto
+
+# Declare specific file types as text to ensure they use LF in the repo.
+*.js text
+*.jsx text
+*.css text
+*.html text
+*.json text
+*.md text
+
+# Ensure binary files are not modified.
+*.png binary
+*.jpg binary
+*.jpeg binary
+*.gif binary
+*.ico binary
+*.svg text
