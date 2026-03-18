@@ -1,59 +1,72 @@
+/* Base Dark Mode Settings */
 body {
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  background-color: #f4f7f6;
-  color: #333;
   margin: 0;
-  text-align: center;
+  font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+  background-color: #121212; /* Deep dark background */
+  color: #ffffff;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
   min-height: 100vh;
 }
 
-/* Dashboard Styles */
-.dashboard-container {
+#root {
+  width: 100%;
+  max-width: 900px;
+  text-align: center;
   padding: 40px 20px;
 }
+
+/* Header Styling */
+.app-title {
+  color: #f1c40f; /* A nice stream-friendly yellow accent */
+  font-size: 2.8rem;
+  margin-bottom: 10px;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+}
+
+.app-subtitle {
+  color: #a0a0a0;
+  font-size: 1.1rem;
+  margin-bottom: 40px;
+}
+
+/* The Grid Layout */
 .cards-grid {
-  max-width: 900px;
-  margin: 0 auto;
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
-  gap: 25px;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 20px;
   padding: 10px;
 }
+
+/* The Dark Mode Feature Cards */
 .feature-card {
-  background: #ffffff;
+  background-color: #1e1e1e; /* Slightly lighter than the background */
+  border: 1px solid #333333;
   border-radius: 12px;
   padding: 30px 20px;
-  cursor: pointer;
-  color: #2c3e50;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
-  transition: transform 0.2s ease, box-shadow 0.2s ease;
   display: flex;
   flex-direction: column;
   align-items: center;
-  border: 1px solid #e1e8ed;
+  transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
 }
+
+/* Hover Animation */
 .feature-card:hover {
   transform: translateY(-5px);
-  box-shadow: 0 10px 15px rgba(0, 0, 0, 0.1);
-  border-color: #bdc3c7;
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.5);
+  border-color: #3498db; /* Glows blue when hovered */
 }
-.feature-icon { font-size: 45px; margin-bottom: 15px; }
-.feature-title { font-size: 1.2em; font-weight: 600; }
 
-/* Feature Page Styles */
-.feature-page {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  min-height: 100vh;
+.feature-icon {
+  font-size: 3.5rem;
+  margin-bottom: 15px;
+  filter: drop-shadow(0 2px 4px rgba(0,0,0,0.3));
 }
-.back-btn {
-  margin-top: 20px;
-  background: none;
-  border: none;
-  color: #7f8c8d;
-  cursor: pointer;
-  font-size: 1em;
+
+.feature-title {
+  font-size: 1.2rem;
+  font-weight: bold;
+  color: #e0e0e0;
 }
-.back-btn:hover { color: #2c3e50; text-decoration: underline; }

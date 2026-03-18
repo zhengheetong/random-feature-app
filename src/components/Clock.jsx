@@ -23,9 +23,7 @@ export default function Clock() {
 
     html.style.setProperty('background-color', 'transparent', 'important');
     body.style.setProperty('background-color', 'transparent', 'important');
-    if (root) {
-      root.style.setProperty('background-color', 'transparent', 'important');
-    }
+    if (root) root.style.setProperty('background-color', 'transparent', 'important');
 
     const interval = setInterval(() => {
       setTime(moment().format(urlFormat)); 
@@ -35,28 +33,20 @@ export default function Clock() {
       clearInterval(interval);
       html.style.backgroundColor = oldHtmlBg;
       body.style.backgroundColor = oldBodyBg;
-      if (root) {
-        root.style.backgroundColor = oldRootBg;
-      }
+      if (root) root.style.backgroundColor = oldRootBg;
     };
   }, [urlFormat]);
 
   const handleApply = () => {
     const newParams = new URLSearchParams(searchParams);
-    
-    if (inputFormat.trim()) {
-      newParams.set('format', inputFormat);
-    } else {
-      newParams.delete('format');
-    }
-    
+    if (inputFormat.trim()) newParams.set('format', inputFormat);
+    else newParams.delete('format');
     setSearchParams(newParams);
   };
 
   const handleCopyObsLink = () => {
     const obsParams = new URLSearchParams(searchParams);
     obsParams.set('obs', 'true');
-    
     const fullUrl = `${window.location.origin}${window.location.pathname}#/clock?${obsParams.toString()}`;
     
     navigator.clipboard.writeText(fullUrl).then(() => {
@@ -66,8 +56,9 @@ export default function Clock() {
   };
 
   return (
-    <div style={{ textAlign: 'left', padding: 0, margin: 0 }}>
-      {/* The Clock Display - Locked back to original size/color */}
+    <div style={{ textAlign: 'left', padding: 0, margin: 0, display: 'flex', flexDirection: 'column', alignItems: isObs ? 'flex-start' : 'center' }}>
+      
+      {/* OBS Stream Display */}
       <div style={{
         display: 'inline-block',
         fontFamily: 'monospace',
@@ -84,27 +75,34 @@ export default function Clock() {
       
       <br />
 
-      {/* The Control Panel */}
+      {/* Dark Mode Control Panel */}
       {!isObs && (
         <div style={{ 
           marginTop: '30px', 
-          padding: '20px', 
-          backgroundColor: '#ffffff', 
+          padding: '25px', 
+          backgroundColor: '#1e1e1e', /* Dark panel background */
           borderRadius: '12px',
-          border: '1px solid #e1e8ed',
+          border: '1px solid #333333', /* Dark subtle border */
           display: 'inline-block',
-          boxShadow: '0 4px 6px rgba(0,0,0,0.05)',
-          minWidth: '350px'
+          boxShadow: '0 8px 16px rgba(0,0,0,0.4)',
+          minWidth: '350px',
+          textAlign: 'left'
         }}>
-          <h3 style={{ marginTop: 0, color: '#2c3e50', marginBottom: '15px' }}>Clock Settings</h3>
+          <h3 style={{ marginTop: 0, color: '#e0e0e0', marginBottom: '15px', textAlign: 'center' }}>Clock Settings</h3>
           
-          <label style={{ display: 'flex', flexDirection: 'column', fontSize: '14px', color: '#7f8c8d', marginBottom: '20px' }}>
+          <label style={{ display: 'flex', flexDirection: 'column', fontSize: '14px', color: '#a0a0a0', marginBottom: '20px' }}>
             Time Format (moment.js)
             <input 
               type="text" 
               value={inputFormat}
               onChange={(e) => setInputFormat(e.target.value)}
-              style={{ padding: '10px', fontSize: '16px', borderRadius: '6px', border: '1px solid #bdc3c7', marginTop: '6px', outline: 'none' }}
+              style={{ 
+                padding: '10px', fontSize: '16px', borderRadius: '6px', 
+                backgroundColor: '#2c2c2c', /* Dark input background */
+                color: '#ffffff', /* White text inside input */
+                border: '1px solid #444444', 
+                marginTop: '6px', outline: 'none' 
+              }}
               onKeyDown={(e) => e.key === 'Enter' && handleApply()}
             />
           </label>
@@ -118,14 +116,14 @@ export default function Clock() {
             </button>
             <button 
               onClick={handleCopyObsLink}
-              style={{ flex: 1, padding: '10px', backgroundColor: copied ? '#27ae60' : '#2c3e50', color: 'white', border: 'none', borderRadius: '6px', cursor: 'pointer', fontWeight: 'bold', transition: 'background-color 0.2s' }}
+              style={{ flex: 1, padding: '10px', backgroundColor: copied ? '#27ae60' : '#444444', color: 'white', border: '1px solid #555', borderRadius: '6px', cursor: 'pointer', fontWeight: 'bold', transition: 'background-color 0.2s' }}
             >
               {copied ? '✅ Copied!' : '📋 Copy OBS Link'}
             </button>
           </div>
 
           <div style={{ marginTop: '20px', textAlign: 'center' }}>
-            <Link to="/" style={{ textDecoration: 'none', color: '#7f8c8d', fontSize: '14px' }}>
+            <Link to="/" style={{ textDecoration: 'none', color: '#a0a0a0', fontSize: '14px' }}>
               ← Back to Dashboard
             </Link>
           </div>
