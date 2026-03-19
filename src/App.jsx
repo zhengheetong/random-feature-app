@@ -6,6 +6,8 @@ import Counter from './components/Counter';
 import Wheel from './components/Wheel';
 import Objectives from './components/Objectives';
 import TweetGenerator from './components/TweetGenerator';
+import GachaTracker from './components/GachaTracker';
+import ClipboardSaver from './components/ClipboardSaver';
 
 // We extract the dashboard into its own mini-component for cleaner code
 function Dashboard() {
@@ -66,6 +68,31 @@ function Dashboard() {
           </div>
           <div className="feature-title">Counter</div>
         </Link>
+
+        {/* 7. GACHA TRACKER */}
+        <Link to="/gacha" className="feature-card" style={{ textDecoration: 'none' }}>
+          <div className="feature-icon">
+            {/* A Star icon for Gacha pulls */}
+            <svg viewBox="0 0 24 24">
+              <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2" />
+            </svg>
+          </div>
+          <div className="feature-title">Gacha Tracker</div>
+        </Link>
+
+        {/* 8. CLIPBOARD SAVER */}
+        <Link to="/clipboard" className="feature-card" style={{ textDecoration: 'none' }}>
+          <div className="feature-icon">
+            {/* A modern clipboard/image SVG */}
+            <svg viewBox="0 0 24 24">
+              <path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2" />
+              <rect x="8" y="2" width="8" height="4" rx="1" ry="1" />
+              <circle cx="9" cy="14" r="2" />
+              <path d="M20 12l-6.5-6.5a1.5 1.5 0 0 0-2.12 0L4 13" />
+            </svg>
+          </div>
+          <div className="feature-title">Clipboard Image Saver</div>
+        </Link>
       </div>
     </div>
   );
@@ -86,6 +113,8 @@ function App() {
           <Route path="/wheel" element={<Wheel />} />
           <Route path="/objectives" element={<Objectives />} />
           <Route path="/tweet" element={<TweetGenerator />} />
+          <Route path="/gacha" element={<GachaTracker />} />
+          <Route path="/clipboard" element={<ClipboardSaver />} />
         </Routes>
       </div>
     </Router>
