@@ -80,6 +80,10 @@ body {
   margin: 0 !important;
 }
 
+.square-corners .react-tweet-theme article {
+  border-radius: 0px !important;
+}
+
 /* Styling for SVG icons in the menu */
 .feature-icon {
   width: 50px;
