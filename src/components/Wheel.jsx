@@ -195,9 +195,21 @@ export default function Wheel() {
       {/* THE CONTROLS */}
       {!isObs && (
         <div style={{ 
-          marginTop: '40px', padding: '25px', backgroundColor: '#1e1e1e', borderRadius: '12px',
-          boxShadow: '0 8px 16px rgba(0,0,0,0.4)', minWidth: '350px', textAlign: 'center', border: '1px solid #333'
-        }}>
+        position: 'fixed', // This makes it float!
+        top: '20px',
+        right: '20px',
+        width: '360px', // Slightly thinner to save screen space
+        maxHeight: 'calc(100vh - 40px)', // Prevents it from going off-screen
+        overflowY: 'auto', // Adds a scrollbar if the screen is short
+        padding: '25px', 
+        backgroundColor: 'rgba(30, 30, 30, 0.85)', // Slightly transparent
+        backdropFilter: 'blur(12px)', // Adds a modern frosted-glass blur
+        borderRadius: '12px',
+        border: '1px solid rgba(255, 255, 255, 0.1)', // Subtle light border
+        boxShadow: '0 16px 40px rgba(0,0,0,0.6)', // Deep shadow for 3D effect
+        textAlign: 'left',
+        zIndex: 1000 // Ensures it always stays on top of the tweet
+      }}>
           <h3 style={{ marginTop: 0, color: '#e0e0e0', marginBottom: '15px' }}>Wheel Settings</h3>
           
           <p style={{ fontSize: '13px', color: '#a0a0a0', margin: '0 0 10px 0', textAlign: 'left' }}>
@@ -208,7 +220,7 @@ export default function Wheel() {
             onChange={(e) => setInputText(e.target.value)}
             rows={5}
             style={{ 
-              width: '100%', padding: '10px', fontSize: '15px', borderRadius: '6px', 
+              width: '100%', height: '400px', padding: '10px', fontSize: '15px', borderRadius: '6px', 
               backgroundColor: '#2c2c2c', color: '#ffffff',
               border: '1px solid #444', marginBottom: '15px', boxSizing: 'border-box',
               fontFamily: 'sans-serif', resize: 'vertical', outline: 'none'

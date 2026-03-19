@@ -106,7 +106,7 @@ export default function QRCodeGenerator() {
         {qrValue ? (
           <QRCodeCanvas 
             value={qrValue} 
-            size={220} 
+            size={500} 
             fgColor={fgColor} 
             bgColor={bgColor} 
             level={"H"} 
@@ -121,13 +121,20 @@ export default function QRCodeGenerator() {
 
       {/* Control Panel */}
       <div style={{ 
+        position: 'fixed', // This makes it float!
+        top: '20px',
+        right: '20px',
+        width: '360px', // Slightly thinner to save screen space
+        maxHeight: 'calc(100vh - 40px)', // Prevents it from going off-screen
+        overflowY: 'auto', // Adds a scrollbar if the screen is short
         padding: '25px', 
-        backgroundColor: '#1e1e1e', 
+        backgroundColor: 'rgba(30, 30, 30, 0.85)', // Slightly transparent
+        backdropFilter: 'blur(12px)', // Adds a modern frosted-glass blur
         borderRadius: '12px',
-        border: '1px solid #333333',
-        boxShadow: '0 8px 16px rgba(0,0,0,0.4)',
-        minWidth: '380px',
-        textAlign: 'left'
+        border: '1px solid rgba(255, 255, 255, 0.1)', // Subtle light border
+        boxShadow: '0 16px 40px rgba(0,0,0,0.6)', // Deep shadow for 3D effect
+        textAlign: 'left',
+        zIndex: 1000 // Ensures it always stays on top of the tweet
       }}>
         <h3 style={{ marginTop: 0, color: '#e0e0e0', marginBottom: '20px', textAlign: 'center' }}>QR Code Generator</h3>
         

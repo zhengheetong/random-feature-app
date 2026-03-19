@@ -26,7 +26,7 @@ function Dashboard() {
         </Link>
 
         {/* 2. QR GENERATOR */}
-        <Link to="/qr" className="feature-card" style={{ textDecoration: 'none' }}>
+        <Link to="/qrgenerator" className="feature-card" style={{ textDecoration: 'none' }}>
           <div className="feature-icon">
             <svg viewBox="0 0 24 24"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/><rect x="7" y="7" width="1" height="1"/><rect x="16" y="7" width="1" height="1"/><rect x="7" y="16" width="1" height="1"/></svg>
           </div>
@@ -108,7 +108,7 @@ function App() {
           
           {/* These are your direct URLs that you can paste into OBS */}
           <Route path="/clock" element={<Clock />} />
-          <Route path="/qrcode" element={<QRCodeGenerator />} />
+          <Route path="/qrgenerator" element={<QRCodeGenerator />} />
           <Route path="/counter" element={<Counter />} />
           <Route path="/wheel" element={<Wheel />} />
           <Route path="/objectives" element={<Objectives />} />
