@@ -4,6 +4,8 @@ import { Link } from 'react-router-dom';
 export default function ClipboardSaver() {
   const [images, setImages] = useState([]);
   const [isDragging, setIsDragging] = useState(false);
+  const [batchName, setBatchName] = useState('extracted-image');
+
 
   // --- 1. CLIPBOARD PASTE HANDLER ---
   useEffect(() => {
@@ -100,6 +102,23 @@ export default function ClipboardSaver() {
     setImages([]);
   };
 
+  const handleBatchRename = () => {
+    if (!batchName.trim()) return;
+    
+    setImages(prev => prev.map((img, index) => {
+      // Find the file extension (e.g., .png, .jpg) or default to .png
+      const extMatch = img.name.match(/\.[0-9a-z]+$/i);
+      const ext = extMatch ? extMatch[0] : '.png';
+      
+      // Update the name with the new base name + number
+      return { 
+        ...img, 
+        name: `${batchName.trim()}-${index + 1}${ext}` 
+      };
+    }));
+  };
+
+
   return (
     <div style={{ padding: '20px', maxWidth: '1000px', margin: '0 auto', textAlign: 'center' }}>
       <h2 style={{ color: '#f1c40f', marginBottom: '10px', fontSize: '2.5rem', textTransform: 'uppercase' }}>
@@ -141,6 +160,41 @@ export default function ClipboardSaver() {
           </div>
         )}
       </div>
+
+      {images.length > 0 && (
+        <div style={{ 
+          display: 'flex', alignItems: 'center', gap: '15px', 
+          backgroundColor: '#1a1a1a', padding: '15px', 
+          borderRadius: '8px', border: '1px solid #333', 
+          marginBottom: '20px', boxShadow: 'inset 0 2px 4px rgba(0,0,0,0.2)' 
+        }}>
+          <span style={{ color: '#a0a0a0', fontSize: '14px', whiteSpace: 'nowrap', fontWeight: 'bold' }}>
+            ✏️ Batch Rename:
+          </span>
+          <input 
+            type="text" 
+            value={batchName}
+            onChange={(e) => setBatchName(e.target.value)}
+            placeholder="e.g., presentation-slide"
+            style={{ 
+              flex: 1, padding: '10px', borderRadius: '6px', 
+              backgroundColor: '#121212', color: 'white', 
+              border: '1px solid #444', outline: 'none', fontSize: '14px' 
+            }}
+          />
+          <button 
+            onClick={handleBatchRename}
+            style={{ 
+              padding: '10px 20px', backgroundColor: '#8e44ad', 
+              color: 'white', border: 'none', borderRadius: '6px', 
+              cursor: 'pointer', fontWeight: 'bold' 
+            }}
+          >
+            Apply to All
+          </button>
+        </div>
+      )}
+
 
       {/* --- THE DROP ZONE --- */}
       <div 
