@@ -95,10 +95,14 @@ export default function TweetGenerator() {
       // 🚨 WE CALL IT HERE! Right before taking the screenshot 🚨
       await forceHighResImages(tweetElement);
 
+      const rect = tweetElement.getBoundingClientRect();
+
       const canvas = await html2canvas(tweetElement, {
         useCORS: true, 
         backgroundColor: '#null', 
         scale: 4, // 4K Resolution
+        width: Math.floor(rect.width),   // Snaps width to a clean integer
+        height: Math.floor(rect.height), // Snaps height to a clean integer
         logging: false,
       });
 
@@ -139,11 +143,17 @@ export default function TweetGenerator() {
       // 🚨 WE CALL IT HERE TOO! 🚨
       await forceHighResImages(tweetElement);
 
+      const rect = tweetElement.getBoundingClientRect();
+
       const canvas = await html2canvas(tweetElement, {
-        useCORS: true,
-        backgroundColor: '#null',
+        useCORS: true, 
+        backgroundColor: '#null', 
         scale: 4, // 4K Resolution
+        width: Math.floor(rect.width),   // Snaps width to a clean integer
+        height: Math.floor(rect.height), // Snaps height to a clean integer
+        logging: false,
       });
+      
       const url = canvas.toDataURL('image/png');
       const link = document.createElement('a');
       link.href = url;
