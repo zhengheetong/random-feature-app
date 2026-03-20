@@ -174,7 +174,7 @@ export default function ClipboardSaver() {
             <h3 style={{ margin: '0 0 5px 0', color: isDragging ? '#3498db' : '#888' }}>
               {isDragging ? 'Drop it here!' : 'Ready for your images'}
             </h3>
-            <p style={{ margin: 0, fontSize: '15px' }}>Press <b>Ctrl+V</b> or <b>Drag and Drop</b> images straight from Word</p>
+            <p style={{ margin: 0, fontSize: '15px' }}>Press <b>Ctrl+V</b> or <b>Drag and Drop</b> images</p>
           </div>
         ) : (
           images.map((img) => (
