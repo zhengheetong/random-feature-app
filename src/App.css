@@ -1,7 +1,7 @@
 /* Base Dark Mode Settings */
 body {
   margin: 0;
-  font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+  font-family: "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
   background-color: #121212; /* Deep dark background */
   color: #ffffff;
   display: flex;
@@ -49,7 +49,10 @@ body {
   display: flex;
   flex-direction: column;
   align-items: center;
-  transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
+  transition:
+    transform 0.2s ease,
+    box-shadow 0.2s ease,
+    border-color 0.2s ease;
 }
 
 /* Hover Animation */
@@ -62,7 +65,7 @@ body {
 .feature-icon {
   font-size: 3.5rem;
   margin-bottom: 15px;
-  filter: drop-shadow(0 2px 4px rgba(0,0,0,0.3));
+  filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.3));
 }
 
 .feature-title {
@@ -110,4 +113,131 @@ body {
   transform: scale(1.1);
   color: #ffffff; /* Turns white on hover for a glow effect */
   transition: all 0.3s ease;
+}
+
+/* =========================================================
+   GLOBAL CONTROL PANEL STYLES
+   ========================================================= */
+
+/* The main container for the control panel (Hidden in OBS usually) */
+.control-panel {
+  margin-top: 30px;
+  padding: 25px;
+  background-color: #1e1e1e; /* Dark panel background */
+  border-radius: 12px;
+  border: 1px solid #333333; /* Dark subtle border */
+  display: inline-block;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.4);
+  min-width: 350px;
+  text-align: left;
+}
+
+/* The title inside the control panel */
+.control-panel h3 {
+  margin-top: 0;
+  color: #e0e0e0;
+  margin-bottom: 15px;
+  text-align: center;
+}
+
+/* Flex container for rows of inputs/buttons */
+.control-group {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 20px;
+  align-items: flex-end; /* keeps buttons aligned with inputs */
+}
+
+/* For equal width columns in a row */
+.control-flex-1 { flex: 1; }
+.control-flex-2 { flex: 2; }
+
+/* The label surrounding an input */
+.control-label {
+  display: flex;
+  flex-direction: column;
+  font-size: 14px;
+  color: #a0a0a0;
+  margin-bottom: 20px; /* Space below if not in a control-group */
+}
+.control-group .control-label {
+  margin-bottom: 0; /* Remove bottom margin if inside a group row */
+}
+
+/* The actual input fields (text, number, select) */
+.control-input {
+  padding: 10px;
+  font-size: 16px;
+  border-radius: 6px;
+  background-color: #2c2c2c; /* Dark input background */
+  color: #ffffff;
+  border: 1px solid #444444;
+  margin-top: 6px;
+  outline: none;
+  font-family: inherit;
+  transition: border-color 0.2s;
+  box-sizing: border-box;
+  width: 100%;
+}
+.control-input:focus {
+  border-color: #3498db; /* highlight on focus */
+}
+
+/* Base button styling */
+.control-btn {
+  padding: 10px;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: bold;
+  font-size: 14px;
+  transition: background-color 0.2s, transform 0.1s;
+  box-sizing: border-box;
+  width: 100%;
+  display: inline-block;
+  text-align: center;
+}
+.control-btn:active {
+  transform: scale(0.98);
+}
+
+/* Button variants */
+.control-btn.primary {
+  background-color: #3498db;
+  color: white;
+}
+.control-btn.primary:hover { background-color: #2980b9; }
+
+.control-btn.success {
+  background-color: #27ae60;
+  color: white;
+}
+.control-btn.success:hover { background-color: #219653; }
+
+.control-btn.secondary {
+  background-color: #444444;
+  border: 1px solid #555555;
+  color: white;
+}
+.control-btn.secondary:hover { background-color: #555555; }
+
+.control-btn.danger {
+  background-color: #e74c3c;
+  color: white;
+}
+.control-btn.danger:hover { background-color: #c0392b; }
+
+/* Link back to dashboard */
+.back-link-container {
+  margin-top: 20px;
+  text-align: center;
+}
+.back-link {
+  text-decoration: none;
+  color: #a0a0a0;
+  font-size: 14px;
+  transition: color 0.2s;
+}
+.back-link:hover {
+  color: #ffffff;
 }
