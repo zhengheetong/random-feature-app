@@ -28,21 +28,30 @@ Make sure you have Node.js installed on your machine.
 ### Installation
 
 1. Clone the repository:
-   git clone https://github.com/zhengheetong/random-feature-app.git
+```bash
+git clone [https://github.com/zhengheetong/random-feature-app.git](https://github.com/zhengheetong/random-feature-app.git)
+```
 
 2. Navigate into the directory:
-   cd random-feature-app
+```bash
+cd random-feature-app
+```
 
 3. Install the dependencies:
-   npm install
+```bash
+npm install
+```
 
 4. Start the development server:
-   npm run dev
+```bash
+npm run dev
+```
 
 ## 📂 Project Structure
 
 The application is architected around isolated React components. Each feature lives in its own standalone file, making the dashboard highly scalable and modular.
 
+```text
 src/
 ├── assets/          # Static assets and icons
 ├── components/      # Standalone feature modules
@@ -55,6 +64,7 @@ src/
 ├── App.css          # Global styling and component tweaks
 ├── App.jsx          # Main routing and dashboard layout
 └── main.jsx         # Application entry point
+```
 
 ## 👨‍💻 Author
 
