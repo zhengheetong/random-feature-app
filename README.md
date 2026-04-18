@@ -1,16 +1,63 @@
-# React + Vite
+# 🛠️ Random Feature App
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A modular, React-based personal dashboard containing a collection of standalone utility widgets, micro-tools, and API-driven features. Built with **React** and **Vite** for lightning-fast performance.
 
-Currently, two official plugins are available:
+## ✨ Features
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+This application acts as a central hub for various custom-built tools:
 
-## React Compiler
+* **🐦 X (Twitter) Post Fetcher:** A high-fidelity tweet renderer that fetches posts via URL and allows you to capture 4K, transparent-background screenshots. Features dynamic corner toggling and bypasses canvas security restrictions for perfect emoji rendering.
+* **🎲 Gacha Tracker & Spin Wheel:** Interactive tools for tracking gacha pulls and making random selections.
+* **⏱️ Pomodoro / Objectives Tracker:** A focused task manager and timer to keep your productivity high.
+* **📱 QR Code Generator:** Instantly converts text or URLs into scannable, downloadable QR codes.
+* **📋 Clipboard Saver:** Utilities for managing, extracting, and saving copied data and images.
+* **🕒 Utilities:** Quick access to custom clocks, counters, and other quality-of-life micro-features.
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+## 💻 Tech Stack
 
-## Expanding the ESLint configuration
+* **Core:** React 18, Vite
+* **Routing:** React Router v6
+* **Key Libraries:** `react-tweet`, `html-to-image` (for DOM-to-PNG high-res rendering)
+* **Styling:** CSS3 (with custom Dark Mode themes)
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+## 🚀 Getting Started
+
+### Prerequisites
+Make sure you have Node.js installed on your machine.
+
+### Installation
+
+1. Clone the repository:
+   git clone https://github.com/zhengheetong/random-feature-app.git
+
+2. Navigate into the directory:
+   cd random-feature-app
+
+3. Install the dependencies:
+   npm install
+
+4. Start the development server:
+   npm run dev
+
+## 📂 Project Structure
+
+The application is architected around isolated React components. Each feature lives in its own standalone file, making the dashboard highly scalable and modular.
+
+src/
+├── assets/          # Static assets and icons
+├── components/      # Standalone feature modules
+│   ├── TweetGenerator.jsx
+│   ├── GachaTracker.jsx
+│   ├── QRCodeGenerator.jsx
+│   ├── Clock.jsx
+│   ├── Wheel.jsx
+│   └── ...
+├── App.css          # Global styling and component tweaks
+├── App.jsx          # Main routing and dashboard layout
+└── main.jsx         # Application entry point
+
+## 👨‍💻 Author
+
+**Tong Zheng Hee**
+* GitHub: [@zhengheetong](https://github.com/zhengheetong)
+* Portfolio: [zhengheetong.github.io](https://zhengheetong.github.io/)
